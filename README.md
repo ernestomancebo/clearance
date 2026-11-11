@@ -29,9 +29,16 @@ from `mattpocock-skills:code-review`; install that plugin too.
 - **Nothing outward-facing without standing authorization.** A review profile
   lists exactly what may be posted; without one, `reviewing-open-prs` dry-runs.
   None of the skills merge, close or force-push.
-- **Disclosure is a profile setting.** By default each posted review ends with
-  a one-line note that it was AI-assisted and checked before posting. A profile
-  can choose `plain` when a team has agreed on reviews without tool notes.
+- **Approvals need a human check.** `reviewing-open-prs` approves only when the
+  profile sets `Approve: after human check` and you said go on that verdict in an
+  attended run. Unattended `/loop` ticks post GO verdicts as comments.
+- **Agent approvals should not count toward required reviews.** Keep branch
+  protection requiring a human approval; the agent's review informs it, it does
+  not replace it.
+- **Disclosure is a profile setting.** By default each posted review and reply
+  ends with a one-line AI-assisted note that says whether you checked it before
+  posting. A profile can choose `plain` when a team has agreed on reviews
+  without tool notes.
 - **Live state only.** Statuses are read from GitHub on every run, never from
   memory.
 

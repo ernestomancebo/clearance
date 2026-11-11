@@ -23,7 +23,7 @@ Feedback on one PR often belongs to another: the defect may be introduced in a p
    - *Out of series*: log a follow-up bead/issue with the reason.
 4. **Fix** in the routed PR, test first, checks green, push without force.
 5. **Propagate** up the stack in order: merge the parent into each child, rerun that child's checks, fix expectations that legitimately changed, stop and report if a failure is the child's own logic. Snapshot/golden regeneration is an intended change: name it in the PR.
-6. **Reply** per thread with the commit sha and what changed, or why not; never tag people, no attribution; skip threads already answered. Post only when the owner authorised replies. Update PR bodies whose claims became false.
+6. **Reply** per thread with the commit sha and what changed, or why not; never tag people; follow the active `reviewing-open-prs` profile's disclosure setting (default `disclose`: end each reply with the AI-assisted line from `references/posting.md`); skip threads already answered. Post only when the owner authorised replies. Update PR bodies whose claims became false.
 7. **Smooth the stack** (every time anything was pushed or merged): run the compass with `--wrinkles` (REQUIRED SUB-SKILL: merge-compass:merge-compass) and clear each listed wrinkle, parents first:
    - *Conflicts* (DIRTY): name the conflicting files and the cause (an add/add from a squash-merged parent is typical), merge the base in (normal merge, no force) after retargeting a child to the default branch, keep only the child's own diff (`git diff origin/<base> --stat`).
    - *Behind a base that merges clean*: not a wrinkle unless GitHub says BEHIND; merging it in anyway invalidates approvals and CI and cascades up the stack.

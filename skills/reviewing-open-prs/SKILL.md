@@ -22,6 +22,7 @@ A profile is `~/.claude/state/reviewing-open-prs/profiles/<name>.md` (kept outsi
 - **No profile named, or no such file:** use Scope below and dry-run.
 - **A profile that names no cadence** runs one tick.
 - **A profile that names no disclosure** uses `disclose` (see `references/posting.md`).
+- **A profile that names no approval rule** never approves: GO and GO WITH NITS post as comments.
 
 ## Scope: which account, which repos
 
@@ -47,7 +48,7 @@ Posting is outward-facing. Permission is given once, ahead of the run, never per
 2. **Delta.** Head unchanged: skip. New head on a reviewed PR: delta review against the recorded sha. Skip when the account's latest review on this head is APPROVED, CHANGES_REQUESTED or starts with a verdict line; an empty-body COMMENTED review is a thread reply and does not count. Record that head.
 3. **Brief** per PR from `references/review-brief.md`. Read `go.mod`, `*.tf` or `pyproject.toml` first so the language is right.
 4. **Review** small PRs yourself and larger ones in a read-only subagent. When more than five PRs are new in one tick (a stack going ready), write one shared brief file with the rules and the stack order, give each subagent only its PR-specific part, and review the bottom of a stack first. Confirm in code any blocker a subagent reports before it goes into a post. A subagent: fetch and diff origin refs, never check out a shared tree, run both axes itself, spawn nothing. It returns a verdict and a draft body. It does not post or touch state.
-5. **Verdict.** GO approves; GO WITH NITS approves with the nits in the body; NO GO requests changes. A PR authored by the posting account cannot be approved or rejected by it: comment, or skip if excluded.
+5. **Verdict.** NO GO requests changes. GO and GO WITH NITS (nits in the body) **approve only after a human check**: the profile must set `Approve: after human check`, and in an attended run the owner reads the draft and the verdict and says go before you approve. On an unattended tick (a `/loop` run nobody is watching) post GO and GO WITH NITS as a comment with the verdict line, never as an approval: an approval counts toward branch protection, and an agent's review must not stand in for the human one. A PR authored by the posting account cannot be approved or rejected by it: comment, or skip if excluded.
 6. **Post** (parent only): re-read the head sha right before posting and skip if it moved; one review inside the authorization, under 250 words, first line `**<VERDICT>** (reviewed at <sha9>)`, first person. Checks and commands: `references/posting.md`.
 7. **Record** the head and action only after the post lands, then schedule the next tick.
 
@@ -62,9 +63,10 @@ Posting is outward-facing. Permission is given once, ahead of the run, never per
 
 ## Red flags
 
-- A body that breaks the profile's disclosure setting: under `disclose`, a missing disclosure line; under `plain`, any mention of AI, automation, agents, sessions or a temp path (CI check names such as `claude-review` count).
+- A body that breaks the profile's disclosure setting: under `disclose`, a missing disclosure line; under `plain`, any mention of AI, automation, agents, sessions or a temp path (CI check names such as `ai-review` count).
 - A body reading as a bare filename (`-f` instead of `-F`).
 - A review with no `reviewed at` line.
+- An approval posted on an unattended tick, or without the owner's go in an attended run.
 - A diff larger than the PR's own commits (stacked PR diffed against main).
 - A repo in scope with no scan result this tick.
 

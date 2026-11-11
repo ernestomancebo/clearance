@@ -6,7 +6,7 @@ usage: GH_TOKEN=... python3 merge_compass.py OWNER repo#N [repo#N ...] [--dep a#
   reviewers who requested changes can be asked to re-review (their review predates the latest push).
   --wrinkles also lists what keeps a PR from merging cleanly: conflicts, a child behind its parent's head,
   a base branch that is gone (parent merged: retarget), a branch behind its base only when branch rules require it up to date (otherwise listed as info), red or pending CI.
-  --dep "client#53>api#761" means client#53 cannot merge before api#761 (cross-repo).
+  --dep "client#12>api#34" means client#12 cannot merge before api#34 (cross-repo).
 Waves: 0 = already merged; 1 = base is the repo default branch and no unmerged dependency;
 n+1 = one more than the deepest unmerged dependency (stack parent = open PR whose head is this PR's base).
 Reads live state from the GitHub API every run; never trust a remembered status.
