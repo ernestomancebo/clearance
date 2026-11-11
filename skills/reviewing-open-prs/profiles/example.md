@@ -13,12 +13,15 @@ api, web, infrastructure
 - Drafts (do not record them).
 
 ## Verdicts
-- GO: approve.
-- GO WITH NITS: approve, nits in the body.
+- GO: approve after human check (attended runs only); comment on unattended ticks.
+- GO WITH NITS: same as GO, nits in the body.
 - NO GO: request changes.
 
+## Approve
+`after human check`: approve only when I have read the draft and said go in an attended run. Delete this section to never approve.
+
 ## Disclosure
-`disclose`: end each review with `_AI-assisted review, checked by me before posting._`
+`disclose`: end each review with `_AI-assisted review, checked by me before posting._` when I checked it, and `_Automated AI-assisted review; not yet checked by me._` on unattended ticks.
 (Use `plain` only when your team has agreed that reviews carry no tool notes.)
 
 ## Never

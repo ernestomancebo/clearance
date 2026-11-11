@@ -5,7 +5,7 @@ Fill every field. A blank field is a wrong review waiting to happen.
 ```
 Repo: <owner/repo>   PR: #<n>   Author: <login>   Draft: <y/n>
 Account: <login chosen in scope.txt>; run every gh call as GH_TOKEN=$(gh auth token --user <login>) gh ...; never gh auth switch
-Language / stack: <e.g. Django+gRPC, Go sqlc+buf, Terraform>   Standards: <CLAUDE.md, CONTRIBUTING.md, docs/architecture/…>
+Language / stack: <e.g. Python+gRPC, Go, Terraform>   Standards: <CLAUDE.md, CONTRIBUTING.md, docs/architecture/…>
 Base: <branch>   Parent if stacked: <branch or "none">   Head: <sha9>
 Diff command: git diff origin/<parent-or-base>...origin/<head>
 Local checkout: <path> (dirty: never checkout; fetch + origin refs only)
