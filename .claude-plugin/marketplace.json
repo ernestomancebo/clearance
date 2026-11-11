@@ -1,5 +1,5 @@
 {
-  "name": "merge-compass-marketplace",
+  "name": "clearance-marketplace",
   "owner": {
     "name": "Ernesto Mancebo"
   },
@@ -8,10 +8,10 @@
   },
   "plugins": [
     {
-      "name": "merge-compass",
+      "name": "clearance",
       "source": "./",
       "description": "Review-to-release skills for Claude Code: stateful PR review sweeps, review-feedback routing, and merge order across stacked and multi-repo pull requests.",
-      "version": "0.1.1",
+      "version": "0.2.0",
       "keywords": ["code-review", "pull-requests", "stacked-prs", "release"],
       "category": "productivity"
     }

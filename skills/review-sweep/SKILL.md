@@ -1,9 +1,9 @@
 ---
-name: reviewing-open-prs
+name: review-sweep
 description: Use when asked to review, sweep, babysit or loop over the open pull requests of one or more GitHub repos and post verdicts (approve, request changes, comment) under the user's account, including recurring runs that must only re-review what changed.
 ---
 
-# Reviewing Open PRs
+# Review Sweep
 
 ## Overview
 
@@ -15,7 +15,7 @@ Not for a single PR already open in the conversation; run the code-review skill 
 
 ## Profiles
 
-A profile is `~/.claude/state/reviewing-open-prs/profiles/<name>.md` (kept outside the plugin, so updates never overwrite it; `profiles/example.md` beside this skill is the template). It names the account, repos, skipped authors, verdict mapping, disclosure, state directory and cadence. `/merge-compass:reviewing-open-prs <name>` loads it, and the same name inside a `/loop` prompt does too (`/loop 30m /merge-compass:reviewing-open-prs <name>`).
+A profile is `~/.claude/state/clearance/review-sweep/profiles/<name>.md` (kept outside the plugin, so updates never overwrite it; `profiles/example.md` beside this skill is the template). It names the account, repos, skipped authors, verdict mapping, disclosure, state directory and cadence. `/clearance:review-sweep <name>` loads it, and the same name inside a `/loop` prompt does too (`/loop 30m /clearance:review-sweep <name>`).
 
 - **Naming a profile that exists is the standing authorization** for exactly what the file lists, on every tick. Nothing it omits is authorized.
 - **State lives in the profile's state directory** (create it if missing), so a new session resumes from the recorded heads. Never use a session scratchpad for state.

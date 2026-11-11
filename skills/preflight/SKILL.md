@@ -1,15 +1,15 @@
 ---
-name: stacked-pr-finisher
+name: preflight
 description: Use when a stacked PR series or cross-repo set is built and about to go to review or release, and you must verify release waves, branch bases, labels, PR descriptions and cross-repo links are all consistent.
 ---
 
-# Stacked PR Finisher
+# Preflight
 
 ## Overview
 A series is finished only when a reader can open any one PR and see where it sits, what it waits on, and what it unblocks, in every repo it touches. This is an audit with fixes, run once the work is built and again before release.
 
 ## Checklist (report pass/fail per item with the PR)
-1. **Waves exist and are written down**: REQUIRED SUB-SKILL: merge-compass:merge-compass. Run its script now (do not derive waves by hand); the result is linked from the top PR and a tracking issue/bead/milestone.
+1. **Waves exist and are written down**: REQUIRED SUB-SKILL: clearance:merge-plan. Run its script now (do not derive waves by hand); the result is linked from the top PR and a tracking issue/bead/milestone.
 2. **Bases are right**: each child's base is its parent's head; no child targets a merged or deleted branch; siblings that should be linear are.
 3. **In sync**: no DIRTY/behind branch; parents merged into children after any parent change; CI green on the latest pushed commit (not an older one); lint/type/baseline unchanged or growth labelled.
 4. **Contracts in sync**: generated code, snapshots/goldens, pinned copies of contract blocks, docs/plans describing what is built (statuses, names, paths), release notes and moved-paths lists.
@@ -21,7 +21,7 @@ A series is finished only when a reader can open any one PR and see where it sit
 10. **Release control**: deploy-order constraints (migration before service, bucket before consumer), flags default off, rollback noted, nothing applied to live systems without the owner.
 
 ## Fixing
-Apply label/body/base edits only to PRs you own, after listing them; ask before editing others' PRs or applying anything outward-facing in bulk. Re-run the merge compass at the end.
+Apply label/body/base edits only to PRs you own, after listing them; ask before editing others' PRs or applying anything outward-facing in bulk. Re-run merge-plan at the end.
 
 ## Common mistakes
 | Mistake | Fix |
