@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Merge compass: one table for a set of PRs (stacked and cross-repo).
+"""Merge plan: one table for a set of PRs (stacked and cross-repo).
 
-usage: GH_TOKEN=... python3 merge_compass.py OWNER repo#N [repo#N ...] [--dep a#1>b#2 ...] [--wrinkles] [--share]
+usage: GH_TOKEN=... python3 merge_plan.py OWNER repo#N [repo#N ...] [--dep a#1>b#2 ...] [--wrinkles] [--share]
   --share prints the series as a pasteable list in merge order (full links, state, next action) and which
   reviewers who requested changes can be asked to re-review (their review predates the latest push).
   --wrinkles also lists what keeps a PR from merging cleanly: conflicts, a child behind its parent's head,
@@ -36,6 +36,8 @@ def review_states(owner_repo, num):
 
 
 def main(argv):
+    if len(argv) < 2 or argv[0] in ("-h", "--help"):
+        raise SystemExit(__doc__)
     owner, refs, deps, show_wrinkles, show_share = argv[0], [], [], False, False
     it = iter(argv[1:])
     for a in it:
