@@ -1,0 +1,12 @@
+{
+  "name": "merge-compass",
+  "version": "0.1.0",
+  "description": "Review-to-release skills for Claude Code: sweep open PRs with stateful reviews, route review feedback to the PR that owns it, and know what merges next across stacked and multi-repo pull requests.",
+  "author": {
+    "name": "Ernesto Mancebo"
+  },
+  "homepage": "https://github.com/ernestomancebo/merge-compass",
+  "repository": "https://github.com/ernestomancebo/merge-compass",
+  "license": "MIT",
+  "keywords": ["code-review", "pull-requests", "stacked-prs", "release", "claude-code-plugin"]
+}

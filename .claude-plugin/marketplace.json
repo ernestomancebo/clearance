@@ -1,0 +1,19 @@
+{
+  "name": "merge-compass-marketplace",
+  "owner": {
+    "name": "Ernesto Mancebo"
+  },
+  "metadata": {
+    "description": "Review-to-release skills for stacked and multi-repo pull requests."
+  },
+  "plugins": [
+    {
+      "name": "merge-compass",
+      "source": "./",
+      "description": "Review-to-release skills for Claude Code: stateful PR review sweeps, review-feedback routing, and merge order across stacked and multi-repo pull requests.",
+      "version": "0.1.0",
+      "keywords": ["code-review", "pull-requests", "stacked-prs", "release"],
+      "category": "productivity"
+    }
+  ]
+}
