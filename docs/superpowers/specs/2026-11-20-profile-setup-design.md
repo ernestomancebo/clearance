@@ -31,9 +31,10 @@ Profiles are hand-copied markdown files, and every session the user has to name 
 
 Before writing, show exactly what the profile authorizes (repos, verdicts, approval, disclosure) and ask apply or decline: the file is a standing authorization to post. Setup only writes the profile file under `~/.claude/state/clearance/review-sweep/profiles/`; it never posts or changes anything on GitHub.
 
-**Repos format.** `## Repos` accepts `owner/repo` lines. The old single-owner form (`## Repos (owner \`x\`)` with a comma list) stays valid. This was my call.
+**Repos format.** `## Repos` accepts `owner/repo` lines. The old single-owner form (`## Repos (owner \x)` with a comma list) stays valid. This was my call.
 
 **Resolution** (added to `review-sweep`'s Profiles section), first hit wins:
+
 1. A name passed in the invocation.
 2. Exactly one profile lists the current directory's git remote (`origin`, parsed to `owner/repo`).
 3. Exactly one profile exists.

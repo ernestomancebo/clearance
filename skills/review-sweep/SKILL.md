@@ -28,11 +28,11 @@ First hit wins:
 
 A profile's Repos are `owner/repo` lines (the older `## Repos (owner `x`)` comma list is still accepted).
 
-**A profile picked by step 2 or 3 was not named by you, so it does not authorize posting yet.** Announce it ("Using profile `<name>`: it lists this repo"), review, and post nothing until you confirm that name once; the confirmation counts as naming it. Under `/loop`, write the confirmed name into the loop prompt so every tick repeats it.
+**A profile picked by step 2 or 3 alone was not named by you, so it does not authorize posting yet.** (Choosing one when asked at step 2's tie or at step 4 counts as naming it: no second confirmation.) Announce it with its reason ("Using profile `<name>`: it lists this repo", or "it is your only profile"), review, and post nothing until you confirm that name once; the confirmation counts as naming it. Under `/loop`, write the confirmed name into the loop prompt so every tick repeats it.
 
 - **Naming a profile that exists is the standing authorization** for exactly what the file lists, on every tick. Nothing it omits is authorized.
 - **State lives in the profile's state directory** (create it if missing), so a new session resumes from the recorded heads. Never use a session scratchpad for state.
-- **No profile named, or no such file:** use Scope below and dry-run.
+- **No profile resolved (none matched and nobody picked one), or the named file does not exist:** use Scope below and dry-run. If a named file is missing, point to `/clearance:setup`.
 - **A profile that names no cadence** runs one tick.
 - **A profile that names no disclosure** uses `disclose` (see `references/posting.md`).
 - **A profile that names no approval rule** never approves: GO and GO WITH NITS post as comments.
