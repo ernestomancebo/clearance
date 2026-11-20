@@ -49,14 +49,14 @@ from `mattpocock-skills:code-review`; install that plugin too.
 
 Run `/clearance:setup` to create a profile: it asks for the account, the repos
 (any number of owners), the skip rules, approval, disclosure and cadence, shows
-what the profile authorizes, and writes it. Run it again to list or edit them.
+what the profile authorizes, and writes it. Use `/clearance:setup list` and `/clearance:setup edit <name>` to list or edit them.
 Each profile targets its own repos, so keep one per account or repo set.
 
 Then run `/clearance:review-sweep <name>` or
 `/loop 30m /clearance:review-sweep <name>`. With no name, `review-sweep` uses
 the one profile that lists the repo you are in, or your only profile, and
 otherwise asks once; a profile it picked for you posts only after you confirm
-its name once.
+its name once per session.
 
 Prefer a file? Copy `skills/review-sweep/profiles/example.md` to
 `~/.claude/state/clearance/review-sweep/profiles/<name>.md` and edit it.

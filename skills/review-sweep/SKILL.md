@@ -19,16 +19,7 @@ A profile is `~/.claude/state/clearance/review-sweep/profiles/<name>.md` (kept o
 
 ### Which profile
 
-First hit wins:
-
-1. **A name in the invocation** (`/clearance:review-sweep <name>`).
-2. **Exactly one profile lists this directory's repo.** Parse `git remote get-url origin` to `owner/repo` and compare it with each profile's Repos. Two matches: ask which. Not a git repo, or no `origin`: skip this step.
-3. **Exactly one profile exists.**
-4. **Otherwise** list the profiles (name, account, repos) and ask once per session. With no profiles at all, say so, point to `/clearance:setup`, and dry-run.
-
-A profile's Repos are `owner/repo` lines (the older `## Repos (owner `x`)` comma list is still accepted).
-
-**A profile picked by step 2 or 3 alone was not named by you, so it does not authorize posting yet.** (Choosing one when asked at step 2's tie or at step 4 counts as naming it: no second confirmation.) Announce it with its reason ("Using profile `<name>`: it lists this repo", or "it is your only profile"), review, and post nothing until you confirm that name once; the confirmation counts as naming it. Under `/loop`, write the confirmed name into the loop prompt so every tick repeats it.
+With no name given, resolve one by the order in `references/profiles.md`: the name passed, else the one profile listing this directory's repo, else your only profile, else ask once. A profile picked automatically (not named, not chosen from a question) posts nothing until you confirm its name once.
 
 - **Naming a profile that exists is the standing authorization** for exactly what the file lists, on every tick. Nothing it omits is authorized.
 - **State lives in the profile's state directory** (create it if missing), so a new session resumes from the recorded heads. Never use a session scratchpad for state.

@@ -11,7 +11,7 @@ One `owner/repo` per line; a profile may span several owners.
 - your-org/web
 - other-org/infrastructure
 
-(The older single-owner form still works: `## Repos (owner `your-org`)` followed by a comma list.)
+(The older single-owner form still works: ``## Repos (owner `your-org`)`` followed by a comma list.)
 
 ## Skip
 - PRs authored by `your-login`, `dependabot`, `app/dependabot`.

@@ -1,11 +1,11 @@
 ---
 name: setup
-description: Use when creating, listing or editing clearance review-sweep profiles: which GitHub account reviews which repos, across one or more owners.
+description: Use when setting up, configuring, listing or editing clearance review-sweep profiles, including having several profiles for different GitHub accounts or repo sets across one or more owners.
 ---
 
 # Profile setup
 
-A review-sweep profile is `~/.claude/state/clearance/review-sweep/profiles/<name>.md`. It says which account reviews which repos and what may be posted, and naming it authorizes exactly that. This skill writes those files by asking, so nobody copies `skills/review-sweep/profiles/example.md` by hand. A person may have several profiles, each with its own account and repos.
+A review-sweep profile is `~/.claude/state/clearance/review-sweep/profiles/<name>.md`. It says which account reviews which repos and what may be posted, and naming it authorizes exactly that. This skill writes those files by asking, so nobody copies the template (`../review-sweep/profiles/example.md`, relative to this skill) by hand. A person may have several profiles, each with its own account and repos.
 
 ## Rules
 
@@ -25,14 +25,14 @@ A review-sweep profile is `~/.claude/state/clearance/review-sweep/profiles/<name
 
 1. **Account.** `gh auth status` lists the logged-in accounts; ask which one reviews.
 2. **Repos.** Ask for an owner or org, list its repos with `gh repo list <owner> --limit 200` as that account, print them as text and take the picks as free text (`owner/repo`, comma-separated). Offer to add another owner; a profile may span several. Check each pick with `gh repo view <owner>/<repo>` as that account; report any it cannot reach and leave it out of the file.
-3. **Skip.** Default: the account itself, `dependabot`, `app/dependabot`, and drafts. Ask for more.
-4. **Verdicts.** Default mapping as in `example.md`: GO approves only if Approve allows it, GO WITH NITS the same with nits in the body, NO GO requests changes.
+3. **Skip.** Start from the template's Skip section (with the account itself); ask for more.
+4. **Verdicts.** Use the template's mapping; ask only if the person wants a different one.
 5. **Approve.** Default off (comments only). Offer `after human check`, which approves only when the person read the draft and said go in an attended run.
 6. **Disclosure.** Default `disclose`. Offer `plain` only for a team that agreed reviews carry no tool notes.
 7. **Cadence.** Default one tick. Offer a `/loop` interval; `example.md` uses 30 minutes.
 8. **Name.** A short slug. If `<name>.md` exists, diff the new file against it and ask overwrite or pick another name.
 
-Fill the sections of `skills/review-sweep/profiles/example.md` in its order: Account, Repos (`owner/repo` lines), Skip, Verdicts, Approve, Disclosure, Never, State (`~/.claude/state/clearance/review-sweep/<name>/`), Cadence. Keep Never as in the example. Write only what the answers allow: with Approve off, write the Verdicts GO and GO WITH NITS lines as "comment with the verdict line" and leave out `## Approve`; with the default one tick, leave out `## Cadence`.
+Create the profiles directory if it is missing. Fill the sections of the template in its order: Account, Repos (`owner/repo` lines), Skip, Verdicts, Approve, Disclosure, Never, State (`~/.claude/state/clearance/review-sweep/<name>/`), Cadence. Keep Never as in the example. Write only what the answers allow: with Approve off, write the Verdicts GO and GO WITH NITS lines as "comment with the verdict line" and leave out `## Approve`; with the default one tick, leave out `## Cadence`.
 
 ## Confirm before writing
 
