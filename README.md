@@ -53,7 +53,7 @@ and rules, then run `/clearance:review-sweep <name>` or
 
 ## Pairs with
 
-[right-model](https://github.com/ernestomancebo/right-model): pin each
+[castlist](https://github.com/ernestomancebo/castlist): pin each
 subagent role to the model tier its task needs. The review subagents here are
 a natural fit for its `verifier` role.
 
