@@ -17,9 +17,13 @@ Not for a single PR already open in the conversation; run the code-review skill 
 
 A profile is `~/.claude/state/clearance/review-sweep/profiles/<name>.md` (kept outside the plugin, so updates never overwrite it; `profiles/example.md` beside this skill is the template). It names the account, repos, skipped authors, verdict mapping, disclosure, state directory and cadence. `/clearance:review-sweep <name>` loads it, and the same name inside a `/loop` prompt does too (`/loop 30m /clearance:review-sweep <name>`).
 
+### Which profile
+
+With no name given, resolve one by the order in `references/profiles.md`: the name passed, else the one profile listing this directory's repo, else your only profile, else ask once. A profile picked automatically (not named, not chosen from a question) posts nothing until you confirm its name once.
+
 - **Naming a profile that exists is the standing authorization** for exactly what the file lists, on every tick. Nothing it omits is authorized.
 - **State lives in the profile's state directory** (create it if missing), so a new session resumes from the recorded heads. Never use a session scratchpad for state.
-- **No profile named, or no such file:** use Scope below and dry-run.
+- **No profile resolved (none matched and nobody picked one), or the named file does not exist:** use Scope below and dry-run. If a named file is missing, point to `/clearance:setup`.
 - **A profile that names no cadence** runs one tick.
 - **A profile that names no disclosure** uses `disclose` (see `references/posting.md`).
 - **A profile that names no approval rule** never approves: GO and GO WITH NITS post as comments.
