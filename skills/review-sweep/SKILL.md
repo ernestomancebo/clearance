@@ -17,6 +17,19 @@ Not for a single PR already open in the conversation; run the code-review skill 
 
 A profile is `~/.claude/state/clearance/review-sweep/profiles/<name>.md` (kept outside the plugin, so updates never overwrite it; `profiles/example.md` beside this skill is the template). It names the account, repos, skipped authors, verdict mapping, disclosure, state directory and cadence. `/clearance:review-sweep <name>` loads it, and the same name inside a `/loop` prompt does too (`/loop 30m /clearance:review-sweep <name>`).
 
+### Which profile
+
+First hit wins:
+
+1. **A name in the invocation** (`/clearance:review-sweep <name>`).
+2. **Exactly one profile lists this directory's repo.** Parse `git remote get-url origin` to `owner/repo` and compare it with each profile's Repos. Two matches: ask which. Not a git repo, or no `origin`: skip this step.
+3. **Exactly one profile exists.**
+4. **Otherwise** list the profiles (name, account, repos) and ask once per session. With no profiles at all, say so, point to `/clearance:setup`, and dry-run.
+
+A profile's Repos are `owner/repo` lines (the older `## Repos (owner `x`)` comma list is still accepted).
+
+**A profile picked by step 2 or 3 was not named by you, so it does not authorize posting yet.** Announce it ("Using profile `<name>`: it lists this repo"), review, and post nothing until you confirm that name once; the confirmation counts as naming it. Under `/loop`, write the confirmed name into the loop prompt so every tick repeats it.
+
 - **Naming a profile that exists is the standing authorization** for exactly what the file lists, on every tick. Nothing it omits is authorized.
 - **State lives in the profile's state directory** (create it if missing), so a new session resumes from the recorded heads. Never use a session scratchpad for state.
 - **No profile named, or no such file:** use Scope below and dry-run.

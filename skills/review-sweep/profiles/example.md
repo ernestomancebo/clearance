@@ -5,8 +5,13 @@ Copy this file to `~/.claude/state/clearance/review-sweep/profiles/<name>.md` an
 ## Account
 - Login: `your-login`. Run every `gh` call as `GH_TOKEN=$(gh auth token --user your-login) gh ...`. Never `gh auth switch`.
 
-## Repos (owner `your-org`)
-api, web, infrastructure
+## Repos
+One `owner/repo` per line; a profile may span several owners.
+- your-org/api
+- your-org/web
+- other-org/infrastructure
+
+(The older single-owner form still works: `## Repos (owner `your-org`)` followed by a comma list.)
 
 ## Skip
 - PRs authored by `your-login`, `dependabot`, `app/dependabot`.
