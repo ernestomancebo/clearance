@@ -25,6 +25,7 @@ from `mattpocock-skills:code-review`; install that plugin too.
 | `merge-plan` | A stacked or cross-repo PR set changed and someone asks "what merges next?" | Reads live GitHub state and prints waves, dependencies, review/CI state and the next action per PR (`merge_plan.py`) |
 | `feedback-router` | Review feedback arrived on a stacked series, or the series conflicts or trails its parents | Checks each review claim against the code, routes it to the PR that introduced it, propagates fixes up the stack and clears merge blockers |
 | `preflight` | A series is built and about to go to review or release | Audits bases, waves, labels, cross-repo links and PR descriptions, and lists what fails |
+| `setup` | You need a review profile, or have several that target different repos | Asks which account reviews which repos (across owners), what may be posted and how, then writes the profile; also lists and edits them |
 
 ## Safety rules the skills follow
 
@@ -46,10 +47,19 @@ from `mattpocock-skills:code-review`; install that plugin too.
 
 ## Profiles
 
-Copy `skills/review-sweep/profiles/example.md` to
-`~/.claude/state/clearance/review-sweep/profiles/<name>.md`, edit the account, repos
-and rules, then run `/clearance:review-sweep <name>` or
-`/loop 30m /clearance:review-sweep <name>`.
+Run `/clearance:setup` to create a profile: it asks for the account, the repos
+(any number of owners), the skip rules, approval, disclosure and cadence, shows
+what the profile authorizes, and writes it. Run it again to list or edit them.
+Each profile targets its own repos, so keep one per account or repo set.
+
+Then run `/clearance:review-sweep <name>` or
+`/loop 30m /clearance:review-sweep <name>`. With no name, `review-sweep` uses
+the one profile that lists the repo you are in, or your only profile, and
+otherwise asks once; a profile it picked for you posts only after you confirm
+its name once.
+
+Prefer a file? Copy `skills/review-sweep/profiles/example.md` to
+`~/.claude/state/clearance/review-sweep/profiles/<name>.md` and edit it.
 
 ## Pairs with
 
