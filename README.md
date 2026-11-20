@@ -57,6 +57,15 @@ and rules, then run `/clearance:review-sweep <name>` or
 subagent role to the model tier its task needs. The review subagents here are
 a natural fit for its `verifier` role.
 
+```bash
+claude plugin install castlist --marketplace ernestomancebo/castlist
+```
+
+Then run `/castlist:setup` in your project. It quizzes each role in
+`.claude/agents/`, pins its `model:` and shows the changes before writing
+anything. This repo's own roles (`planner`, `implementer`, `verifier`,
+`researcher`) were set up that way.
+
 ## License
 
 MIT
