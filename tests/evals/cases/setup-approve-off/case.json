@@ -1,0 +1,25 @@
+{
+  "doc": "Setup with approval declined writes a profile with no approval text and no Approve/Cadence sections.",
+  "prompt": "/clearance:setup create. Answers, do not ask again: account octocat; repos acme/api and other-org/web; skip rules default; verdicts default; approve off (comments only); disclosure disclose; cadence one tick; name work. Apply it.",
+  "profiles": {},
+  "gh": {
+    "auth status": "github.com\n  \u2713 Logged in to github.com account octocat (keyring)\n  - Active account: true\n",
+    "auth token": "fake-token\n",
+    "pr list": "[{\"number\": 7, \"title\": \"Add retry\", \"headRefOid\": \"abc1234def\", \"author\": {\"login\": \"alice\"}, \"isDraft\": false, \"url\": \"https://github.com/acme/api/pull/7\"}]",
+    "repo view": "{}\n",
+    "repo list": "acme/api\nacme/web\nother-org/web\n"
+  },
+  "expect": {
+    "no_gh_writes": true,
+    "profile_written": "work.md",
+    "profile_contains": [
+      "acme/api",
+      "other-org/web"
+    ],
+    "profile_lacks": [
+      "after human check",
+      "## Approve",
+      "## Cadence"
+    ]
+  }
+}

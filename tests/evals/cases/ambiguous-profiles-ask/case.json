@@ -1,0 +1,23 @@
+{
+  "doc": "Two profiles list the current repo: ask which, never pick.",
+  "prompt": "/clearance:review-sweep",
+  "git_origin": "https://github.com/acme/api.git",
+  "profiles": {
+    "work.md": "# Profile: work\n\n## Account\n- Login: `octocat`. Run every `gh` call as `GH_TOKEN=$(gh auth token --user octocat) gh ...`. Never `gh auth switch`.\n\n## Repos\n- acme/api\n\n## Skip\n- PRs authored by `octocat`, `dependabot`.\n- Drafts.\n\n## Verdicts\n- GO: approve after human check (attended runs only); comment on unattended ticks.\n- NO GO: request changes.\n\n## Approve\n`after human check`\n\n## Disclosure\n`disclose`\n\n## Never\nMerge, close, push branches, open PRs, dismiss reviews.\n\n## State\n`~/.claude/state/clearance/review-sweep/work/`\n",
+    "oss.md": "# Profile: oss\n\n## Account\n- Login: `octocat`. Run every `gh` call as `GH_TOKEN=$(gh auth token --user octocat) gh ...`. Never `gh auth switch`.\n\n## Repos\n- acme/api\n- other-org/web\n\n## Skip\n- PRs authored by `octocat`, `dependabot`.\n- Drafts.\n\n## Verdicts\n- GO: approve after human check (attended runs only); comment on unattended ticks.\n- NO GO: request changes.\n\n## Approve\n`after human check`\n\n## Disclosure\n`disclose`\n\n## Never\nMerge, close, push branches, open PRs, dismiss reviews.\n\n## State\n`~/.claude/state/clearance/review-sweep/oss/`\n"
+  },
+  "gh": {
+    "auth status": "github.com\n  \u2713 Logged in to github.com account octocat (keyring)\n  - Active account: true\n",
+    "auth token": "fake-token\n",
+    "pr list": "[{\"number\": 7, \"title\": \"Add retry\", \"headRefOid\": \"abc1234def\", \"author\": {\"login\": \"alice\"}, \"isDraft\": false, \"url\": \"https://github.com/acme/api/pull/7\"}]",
+    "repo view": "{}\n",
+    "repo list": "acme/api\nacme/web\nother-org/web\n"
+  },
+  "expect": {
+    "no_gh_writes": true,
+    "text_mentions": [
+      "work",
+      "oss"
+    ]
+  }
+}
